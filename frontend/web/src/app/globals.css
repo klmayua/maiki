@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 260 50% 4%;
-    --foreground: 0 0% 98%;
-    --card: 260 40% 8%;
-    --card-foreground: 0 0% 98%;
-    --popover: 260 40% 8%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 260 30% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 260 30% 15%;
-    --muted-foreground: 260 10% 60%;
-    --accent: 45 93% 47%;
-    --accent-foreground: 260 50% 4%;
+    --background: 210 60% 6%;
+    --foreground: 210 20% 98%;
+    --card: 210 50% 10%;
+    --card-foreground: 210 20% 98%;
+    --popover: 210 50% 10%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 203 75% 35%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 30% 18%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 210 30% 18%;
+    --muted-foreground: 210 20% 60%;
+    --accent: 43 50% 59%;
+    --accent-foreground: 210 60% 6%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 260 30% 20%;
-    --input: 260 30% 20%;
-    --ring: 263 70% 50%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 210 30% 20%;
+    --input: 210 30% 20%;
+    --ring: 203 75% 45%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 260 50% 4%;
-    --foreground: 0 0% 98%;
-    --card: 260 40% 8%;
-    --card-foreground: 0 0% 98%;
-    --popover: 260 40% 8%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 260 30% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 260 30% 15%;
-    --muted-foreground: 260 10% 60%;
-    --accent: 45 93% 47%;
-    --accent-foreground: 260 50% 4%;
+    --background: 210 60% 6%;
+    --foreground: 210 20% 98%;
+    --card: 210 50% 10%;
+    --card-foreground: 210 20% 98%;
+    --popover: 210 50% 10%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 203 75% 45%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 30% 18%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 210 30% 18%;
+    --muted-foreground: 210 20% 60%;
+    --accent: 43 50% 59%;
+    --accent-foreground: 210 60% 6%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 260 30% 20%;
-    --input: 260 30% 20%;
-    --ring: 263 70% 50%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 210 30% 20%;
+    --input: 210 30% 20%;
+    --ring: 203 75% 45%;
   }
 }
 
@@ -75,7 +75,7 @@
   }
 
   .glass-nav {
-    @apply bg-maiki-950/80 backdrop-blur-xl border-b border-white/10;
+    @apply bg-slate-950/80 backdrop-blur-xl border-b border-white/10;
   }
 
   .glass-button {
@@ -102,34 +102,34 @@
 
   /* Gradient Text */
   .gradient-text {
-    @apply bg-gradient-to-r from-maiki-400 via-gold-400 to-maiki-300
+    @apply bg-gradient-to-r from-maiki-300 via-accent-400 to-maiki-400
            bg-clip-text text-transparent;
   }
 
-  .gradient-text-purple {
-    @apply bg-gradient-to-r from-maiki-400 to-maiki-300
+  .gradient-text-primary {
+    @apply bg-gradient-to-r from-maiki-400 to-accent-400
            bg-clip-text text-transparent;
   }
 
-  /* Animated Background */
+  /* Animated Background - Navy Theme */
   .animated-gradient {
     background: linear-gradient(
       135deg,
-      #0a0514 0%,
-      #1a0f2e 25%,
-      #2d1b4e 50%,
-      #1a0f2e 75%,
-      #0a0514 100%
+      #041524 0%,
+      #062644 25%,
+      #0a3659 50%,
+      #062644 75%,
+      #041524 100%
     );
     background-size: 400% 400%;
     animation: gradient-shift 15s ease infinite;
   }
 
-  /* Grid Pattern */
+  /* Grid Pattern - Navy Tint */
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(30, 123, 201, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 123, 201, 0.04) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
@@ -143,13 +143,22 @@
     pointer-events: none;
   }
 
-  /* Glow Effects */
+  /* Glow Effects - Navy Theme */
+  .glow-primary {
+    box-shadow: 0 0 40px -10px rgba(30, 123, 201, 0.5);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px -10px rgba(201, 169, 98, 0.4);
+  }
+
+  /* Legacy aliases */
   .glow-purple {
-    box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 40px -10px rgba(30, 123, 201, 0.5);
   }
 
   .glow-gold {
-    box-shadow: 0 0 40px -10px rgba(251, 191, 36, 0.4);
+    box-shadow: 0 0 40px -10px rgba(201, 169, 98, 0.4);
   }
 
   /* Shimmer Effect */
@@ -177,43 +186,43 @@
     @apply w-2 h-2 rounded-full bg-red-500;
   }
 
-  /* Tier Badges */
-  .tier-apprentice { @apply bg-gray-500 text-white; }
-  .tier-associate { @apply bg-blue-500 text-white; }
-  .tier-professional { @apply bg-purple-500 text-white; }
-  .tier-expert { @apply bg-maiki-400 text-maiki-950; }
-  .tier-master { @apply bg-gold-400 text-maiki-950; }
-  .tier-legend { @apply bg-gradient-to-r from-gold-400 to-maiki-400 text-maiki-950; }
+  /* Tier Badges - Navy Theme */
+  .tier-apprentice { @apply bg-slate-500 text-white; }
+  .tier-associate { @apply bg-maiki-600 text-white; }
+  .tier-professional { @apply bg-maiki-500 text-white; }
+  .tier-expert { @apply bg-accent-500 text-slate-950; }
+  .tier-master { @apply bg-gradient-to-r from-accent-500 to-accent-400 text-slate-950; }
+  .tier-legend { @apply bg-gradient-to-r from-accent-400 via-maiki-400 to-accent-400 text-slate-950; }
 }
 
-/* Scrollbar Styling */
+/* Scrollbar Styling - Navy Theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(30, 123, 201, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(30, 123, 201, 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(30, 123, 201, 0.5);
 }
 
-/* Selection */
+/* Selection - Navy Theme */
 ::selection {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(30, 123, 201, 0.3);
   color: white;
 }
 
 /* Focus Visible */
 :focus-visible {
-  outline: 2px solid rgba(139, 92, 246, 0.5);
+  outline: 2px solid rgba(30, 123, 201, 0.5);
   outline-offset: 2px;
 }
 

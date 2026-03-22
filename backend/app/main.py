@@ -9,7 +9,7 @@ from fastapi.requests import Request
 
 from app.core.config import settings
 from app.core.database import engine, Base
-from app.api.routes import auth, users, jobs, applications, skills, payments, courses, guilds, notifications, devices, wallet, kyc, paystack_webhook, ai_matching, community, messages, reviews, email, stripe_webhook as stripe_webhook_route, analytics, admin, semantic, chatbot
+from app.api.routes import auth, users, jobs, applications, skills, payments, courses, guilds, notifications, devices, wallet, kyc, paystack_webhook, ai_matching, community, messages, reviews, email, stripe_webhook as stripe_webhook_route, analytics, admin, semantic, chatbot, scraped_jobs
 
 
 # Create database tables (in production, use Alembic)
@@ -88,6 +88,7 @@ app.include_router(analytics.router, prefix=settings.API_V1_STR, tags=["analytic
 app.include_router(admin.router, prefix=settings.API_V1_STR, tags=["admin"])
 app.include_router(semantic.router, prefix=settings.API_V1_STR, tags=["semantic-search"])
 app.include_router(chatbot.router, prefix=settings.API_V1_STR, tags=["chatbot"])
+app.include_router(scraped_jobs.router, prefix=settings.API_V1_STR, tags=["scraped-jobs"])
 
 
 @app.get("/")
