@@ -1,0 +1,352 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 50% 4%;
+    --foreground: 0 0% 98%;
+    --card: 260 40% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 260 40% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 260 30% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 260 30% 15%;
+    --muted-foreground: 260 10% 60%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 260 50% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 260 30% 20%;
+    --input: 260 30% 20%;
+    --ring: 263 70% 50%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 260 50% 4%;
+    --foreground: 0 0% 98%;
+    --card: 260 40% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 260 40% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 260 30% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 260 30% 15%;
+    --muted-foreground: 260 10% 60%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 260 50% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 260 30% 20%;
+    --input: 260 30% 20%;
+    --ring: 263 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  /* Maiki Glassmorphism */
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl;
+  }
+
+  .glass-card-hover {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl
+           transition-all duration-300 hover:bg-white/10 hover:border-white/20;
+  }
+
+  .glass-nav {
+    @apply bg-maiki-950/80 backdrop-blur-xl border-b border-white/10;
+  }
+
+  .glass-button {
+    @apply bg-gradient-to-r from-maiki-600 to-maiki-500 text-white
+           px-6 py-3 rounded-lg font-medium
+           transition-all duration-300
+           hover:shadow-lg hover:shadow-maiki-500/25 hover:-translate-y-0.5
+           active:scale-[0.98];
+  }
+
+  .glass-button-secondary {
+    @apply bg-white/10 text-white border border-white/20
+           px-6 py-3 rounded-lg font-medium
+           transition-all duration-300
+           hover:bg-white/20 hover:border-white/30;
+  }
+
+  .glass-button-outline {
+    @apply bg-transparent text-maiki-400 border border-maiki-500/50
+           px-6 py-3 rounded-lg font-medium
+           transition-all duration-300
+           hover:bg-maiki-500/10 hover:border-maiki-400;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-maiki-400 via-gold-400 to-maiki-300
+           bg-clip-text text-transparent;
+  }
+
+  .gradient-text-purple {
+    @apply bg-gradient-to-r from-maiki-400 to-maiki-300
+           bg-clip-text text-transparent;
+  }
+
+  /* Animated Background */
+  .animated-gradient {
+    background: linear-gradient(
+      135deg,
+      #0a0514 0%,
+      #1a0f2e 25%,
+      #2d1b4e 50%,
+      #1a0f2e 75%,
+      #0a0514 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Grid Pattern */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Noise Overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
+  }
+
+  /* Glow Effects */
+  .glow-purple {
+    box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.5);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px -10px rgba(251, 191, 36, 0.4);
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Status Badges */
+  .badge-online {
+    @apply w-2 h-2 rounded-full bg-green-500 animate-pulse;
+  }
+
+  .badge-away {
+    @apply w-2 h-2 rounded-full bg-yellow-500;
+  }
+
+  .badge-busy {
+    @apply w-2 h-2 rounded-full bg-red-500;
+  }
+
+  /* Tier Badges */
+  .tier-apprentice { @apply bg-gray-500 text-white; }
+  .tier-associate { @apply bg-blue-500 text-white; }
+  .tier-professional { @apply bg-purple-500 text-white; }
+  .tier-expert { @apply bg-maiki-400 text-maiki-950; }
+  .tier-master { @apply bg-gold-400 text-maiki-950; }
+  .tier-legend { @apply bg-gradient-to-r from-gold-400 to-maiki-400 text-maiki-950; }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: white;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Mobile Safe Areas */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Touch Targets (minimum 44px for iOS, 48px for Material) */
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.touch-target-sm {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Disable pull-to-refresh on iOS */
+html {
+  overscroll-behavior-y: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text selection on UI elements */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Mobile-specific scrollbar */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+/* Standalone PWA status bar height */
+@media (display-mode: standalone) {
+  .pwa-standalone header {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* iOS momentum scrolling */
+.scroll-momentum {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Bottom sheet safe area */
+.bottom-sheet {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Swipe gestures */
+.swipe-area {
+  touch-action: pan-y; /* Allow vertical scroll, handle horizontal in JS */
+}
+
+/* Disable callout on long press for iOS */
+.no-callout {
+  -webkit-touch-callout: none;
+}
+
+/* Hardware acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  /* Already dark by default, but useful for system integration */
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

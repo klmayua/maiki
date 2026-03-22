@@ -1,0 +1,103 @@
+{
+  "expo": {
+    "name": "Maiki",
+    "slug": "maiki-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#8b5cf6"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.maiki.app",
+      "buildNumber": "1.0.0",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to take profile photos and verify identity.",
+        "NSPhotoLibraryUsageDescription": "This app accesses photos for profile pictures and portfolio uploads.",
+        "NSFaceIDUsageDescription": "This app uses Face ID for secure authentication.",
+        "NSUserNotificationUsageDescription": "This app sends notifications for job matches, messages, and payments.",
+        "UIBackgroundModes": ["fetch", "remote-notification"]
+      },
+      "associatedDomains": ["applinks:maiki.io"]
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#8b5cf6"
+      },
+      "package": "io.maiki.app",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "maiki",
+              "host": "*"
+            },
+            {
+              "scheme": "https",
+              "host": "maiki.io",
+              "pathPrefix": "/app"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-local-authentication",
+      "expo-notifications",
+      "expo-secure-store",
+      "expo-updates",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you upload profile pictures and portfolio items."
+        }
+      ],
+      [
+        "sentry-expo",
+        {
+          "organization": "maiki",
+          "project": "mobile"
+        }
+      ]
+    ],
+    "updates": {
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD",
+      "url": "https://u.expo.dev/your-project-id"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    }
+  }
+}

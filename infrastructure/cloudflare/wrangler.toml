@@ -1,0 +1,56 @@
+# Cloudflare Workers configuration for Maiki
+name = "maiki-api"
+main = "src/index.js"
+compatibility_date = "2026-03-21"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+API_BASE_URL = "https://api.maiki.ai"
+FRONTEND_URL = "https://maiki.ai"
+
+# Secrets (set via wrangler secret put)
+# JWT_SECRET
+# PAYSTACK_SECRET_KEY
+# SENDGRID_API_KEY
+# FCM_SERVER_KEY
+
+# KV Namespaces
+[[kv_namespaces]]
+binding = "CACHE"
+id = "maiki_cache"
+
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "maiki_sessions"
+
+# R2 Storage (for media uploads)
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "maiki-media"
+
+# D1 Database (for edge caching)
+[[d1_databases]]
+binding = "DB"
+database_name = "maiki-edge"
+database_id = ""
+
+# Routes
+[[routes]]
+pattern = "api.maiki.ai/*"
+custom_domain = true
+
+[[routes]]
+pattern = "cdn.maiki.ai/*"
+custom_domain = true
+
+# Build settings
+[build]
+command = "npm run build"
+
+# Minify
+minify = true
+
+# Triggers (scheduled workers)
+[[triggers]]
+crons = ["0 */1 * * *"]  # Every hour

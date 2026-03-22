@@ -1,0 +1,102 @@
+.env
+.env.local
+.env.*.local
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node
+node_modules/
+.next/
+out/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mobile
+.expo/
+expo-env.d.ts
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Python virtualenv
+venv/
+ENV/
+env/
+.venv/
+
+# Alembic
+alembic/versions/*.py
+!alembic/versions/.gitkeep
+
+# Frontend build
+frontend/web/dist/
+frontend/web/.next/
+frontend/web/out/
+
+# Mobile build
+frontend/mobile/ios/
+frontend/mobile/android/
+
+# Infrastructure
+infrastructure/terraform/.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Secrets (already handled by env variables but double safety)
+*secret*
+*key*.json
+*credential*
