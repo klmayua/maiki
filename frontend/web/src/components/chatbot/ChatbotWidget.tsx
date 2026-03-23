@@ -207,7 +207,7 @@ export function ChatbotWidget({ className }: ChatbotWidgetProps) {
   };
 
   return (
-    <div className={cn("fixed bottom-4 right-4 z-50", className)}>
+    <div className={cn("fixed bottom-20 md:bottom-4 right-4 z-50", className)}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -223,7 +223,7 @@ export function ChatbotWidget({ className }: ChatbotWidgetProps) {
             transition={{ duration: 0.2 }}
             className={cn(
               "bg-background border rounded-2xl shadow-2xl flex flex-col overflow-hidden",
-              isExpanded ? "fixed bottom-4 right-4" : ""
+              isExpanded ? "fixed bottom-20 md:bottom-4 right-4" : ""
             )}
           >
             {/* Header */}
@@ -392,13 +392,12 @@ export function ChatbotWidget({ className }: ChatbotWidgetProps) {
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
-          <Button
-            size="lg"
-            className="h-14 w-14 rounded-full shadow-lg"
+          <button
+            className="h-14 w-14 rounded-full shadow-lg shadow-teal-500/30 bg-teal-500 hover:bg-teal-400 text-navy-900 flex items-center justify-center transition-all hover:scale-105 hover:shadow-teal-500/50"
             onClick={() => setIsOpen(true)}
           >
             <MessageCircle className="h-6 w-6" />
-          </Button>
+          </button>
         </motion.div>
       )}
     </div>

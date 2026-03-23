@@ -9,9 +9,8 @@ from enum import Enum
 from sqlalchemy.orm import Session
 from sqlalchemy import func, and_
 
+from app.models import User, Guild
 from app.models.wallet import Wallet, Transaction, WalletType, TransactionType, TransactionStatus
-from app.models.user import User
-from app.models.guild import Guild
 from app.services.paystack import paystack_service, convert_from_smallest_unit
 
 

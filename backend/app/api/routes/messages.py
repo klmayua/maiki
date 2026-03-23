@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query, WebSocket,
 from sqlalchemy.orm import Session
 from sqlalchemy import and_, or_, desc, func
 
-from app.deps import get_db, get_current_user, get_current_user_ws
+from app.deps import get_db, get_current_user
 from app.models import (
     User, Conversation, Message, ConversationParticipant,
     MessageReadReceipt, Application, Job

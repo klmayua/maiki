@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 
 from app.deps import get_db, get_current_user
-from app.models import Course, CourseProgress, Certificate
+from app.models import Course, CourseProgress, Certificate, User
 from app.schemas import CourseResponse, CertificateResponse
 
 router = APIRouter(prefix="/courses", tags=["learning"])

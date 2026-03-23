@@ -148,28 +148,23 @@ export default function CommunityPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <h1 className="text-3xl font-bold flex items-center gap-2">
-                <MessageSquare className="h-8 w-8 text-primary" />
-                Community
-              </h1>
-              <p className="text-muted-foreground mt-1">
-                Connect, share, and grow with fellow VAs
-              </p>
+    <div className="min-h-screen bg-navy-900 pb-20 md:pb-0">
+      {/* Compact Header */}
+      <div className="border-b border-navy-700/30">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 pt-14 sm:pt-20 pb-3">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <MessageSquare className="h-5 w-5 text-teal-400" />
+              <h1 className="text-lg sm:text-xl font-bold text-text-primary">Community</h1>
             </div>
-            <Button onClick={() => setIsCreateDialogOpen(true)}>
-              <Plus className="h-4 w-4 mr-2" />
+            <Button size="sm" onClick={() => setIsCreateDialogOpen(true)}>
+              <Plus className="h-4 w-4 mr-1" />
               Create Post
             </Button>
           </div>
 
           {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
@@ -225,7 +220,7 @@ export default function CommunityPage() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-4 sm:py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Posts Feed */}
           <div className="lg:col-span-2 space-y-4">

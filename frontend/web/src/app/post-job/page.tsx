@@ -20,32 +20,8 @@ export default function PostJobPage() {
   const [currentStep, setCurrentStep] = useState(0)
 
   return (
-    <div className="min-h-screen bg-navy-900">
-      {/* Header */}
-      <header className="glass-nav border-b border-navy-700/50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-navy-900" />
-              </div>
-              <span className="font-bold text-text-primary text-xl">maiki</span>
-            </Link>
-            <Link href="/dashboard">
-              <Button variant="ghost" className="text-text-secondary">Dashboard</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-6 py-8">
-        <Link href="/">
-          <Button variant="ghost" className="mb-6 text-text-secondary">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to home
-          </Button>
-        </Link>
-
+    <div className="min-h-screen bg-navy-900 pb-20 md:pb-0">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 pt-14 sm:pt-20 pb-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -74,7 +50,7 @@ export default function PostJobPage() {
                     <div
                       className={`flex items-center gap-2 px-4 py-2 rounded-full ${
                         index === currentStep
-                          ? 'bg-teal-500 text-navy-900'
+                          ? 'bg-teal-500/15 text-teal-300 border border-teal-500/40'
                           : index < currentStep
                           ? 'bg-teal-500/20 text-teal-400'
                           : 'bg-navy-800 text-text-muted'
@@ -206,12 +182,12 @@ export default function PostJobPage() {
                   {currentStep < steps.length - 1 ? (
                     <Button
                       onClick={() => setCurrentStep(currentStep + 1)}
-                      className="bg-teal-500 text-navy-900"
+                      className=""
                     >
                       Next Step
                     </Button>
                   ) : (
-                    <Button className="bg-teal-500 text-navy-900"
+                    <Button
                     >
                       Post Job
                     </Button>

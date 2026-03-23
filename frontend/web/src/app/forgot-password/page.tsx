@@ -32,13 +32,6 @@ export default function ForgotPasswordPage() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md relative z-10"
       >
-        <Link href="/login">
-          <Button variant="ghost" className="mb-6 text-text-secondary">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to login
-          </Button>
-        </Link>
-
         <Card className="glass-card">
           <CardHeader className="text-center">
             <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center mx-auto mb-4">
@@ -62,7 +55,7 @@ export default function ForgotPasswordPage() {
                   We&apos;ve sent password reset instructions to {email}
                 </p>
                 <Link href="/login">
-                  <Button className="w-full bg-teal-500 text-navy-900">
+                  <Button className="w-full ">
                     Return to Login
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -85,7 +78,7 @@ export default function ForgotPasswordPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-teal-500 text-navy-900"
+                  className="w-full "
                   disabled={loading}
                 >
                   {loading ? 'Sending...' : 'Send Reset Instructions'}

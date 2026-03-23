@@ -33,11 +33,10 @@ export default function MobileHeader() {
           </button>
 
           {/* Logo */}
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-maiki-400 to-maiki-600 flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
+          <Link href="/dashboard" className="flex items-center">
+            <div className="px-2.5 py-1 bg-navy-800 border border-navy-600/60 rounded">
+              <span className="text-base font-bold tracking-[0.04em]"><span className="text-teal-400">m</span><span className="text-white">aiki</span></span>
             </div>
-            <span className="font-bold text-white text-lg">maiki</span>
           </Link>
 
           {/* Actions */}

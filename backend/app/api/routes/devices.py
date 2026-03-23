@@ -141,7 +141,7 @@ def update_device_settings(
 
 
 @router.post("/test-notification")
-def send_test_notification(
+async def send_test_notification(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ) -> Any:

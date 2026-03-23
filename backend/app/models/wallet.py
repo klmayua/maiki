@@ -95,7 +95,7 @@ class Transaction(Base):
 
     # Additional info
     description = Column(Text, nullable=True)
-    metadata = Column(JSON, default=dict)
+    tx_metadata = Column("metadata", JSON, default=dict)
     provider_response = Column(JSON, default=dict)
     error_message = Column(Text, nullable=True)
 

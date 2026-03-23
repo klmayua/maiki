@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const [userType, setUserType] = useState<'va' | 'client' | null>(null)
 
   return (
-    <div className="min-h-screen bg-maiki-950 animated-gradient noise-overlay relative overflow-hidden flex items-center justify-center p-4">
+    <div className="min-h-screen bg-maiki-950 animated-gradient noise-overlay relative overflow-hidden flex items-center justify-center p-4 pb-20 md:pb-4">
       {/* Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-maiki-500/20 rounded-full blur-[128px]" />
@@ -24,13 +24,6 @@ export default function RegisterPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md relative z-10"
       >
-        {/* Back Link */}
-        <Link href="/">
-          <Button variant="ghost" size="sm" leftIcon={<ArrowLeft className="w-4 h-4" />} className="mb-6">
-            Back to home
-          </Button>
-        </Link>
-
         <Card className="glass-card">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">

@@ -54,7 +54,7 @@ def submit_assessment(
 
     # Update user's skills if passed
     if result.get("passed"):
-        from app.models import Skill
+        from app.models import Skill, User
 
         # Find or create skill
         skill = db.query(Skill).filter(Skill.name == skill_name).first()

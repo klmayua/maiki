@@ -360,7 +360,7 @@ export default function LandingPage2030() {
               >
                 <Link href="/discover"
                 >
-                  <Button size="lg" className="magnetic-btn bg-teal-500 text-navy-900"
+                  <Button size="lg" className="magnetic-btn"
                   >
                     Hire Elite Talent
                     <ArrowRight className="w-5 h-5 ml-2" />

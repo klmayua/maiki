@@ -201,12 +201,12 @@ class SkillResponse(SkillInDB):
 # ============= REVIEW SCHEMAS =============
 
 class ReviewBase(BaseModel):
-    rating: Decimal = Field(..., ge=1, le=5, decimal_places=2)
+    rating: Decimal = Field(..., ge=1, le=5)
     title: Optional[str] = Field(None, max_length=200)
     content: str = Field(..., min_length=10, max_length=5000)
-    communication: Optional[Decimal] = Field(None, ge=1, le=5, decimal_places=2)
-    quality: Optional[Decimal] = Field(None, ge=1, le=5, decimal_places=2)
-    timeliness: Optional[Decimal] = Field(None, ge=1, le=5, decimal_places=2)
+    communication: Optional[Decimal] = Field(None, ge=1, le=5)
+    quality: Optional[Decimal] = Field(None, ge=1, le=5)
+    timeliness: Optional[Decimal] = Field(None, ge=1, le=5)
 
 
 class ReviewCreate(ReviewBase):
@@ -434,3 +434,8 @@ from app.schemas.messages import (
     MessageSender,
     WebSocketMessage,
 )
+
+
+# Resolve forward references
+UserProfile.model_rebuild()
+JobResponse.model_rebuild()

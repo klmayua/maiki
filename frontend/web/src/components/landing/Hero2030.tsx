@@ -1,446 +1,181 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { Search, ArrowRight, Sparkles, Users, Zap, Shield } from 'lucide-react'
+import { motion } from 'framer-motion'
+import {
+  ArrowRight,
+  Sparkles,
+  Users,
+  Zap,
+  Shield,
+  TrendingUp,
+  GraduationCap,
+  Globe,
+  ChevronRight,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-// Animated particle network component
-function ParticleNetwork() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+const platformStats = [
+  { value: '12,000+', label: 'Verified VAs', icon: Users },
+  { value: '$45', label: 'Avg Hourly Rate', icon: TrendingUp },
+  { value: '98%', label: 'Success Rate', icon: Shield },
+  { value: '50+', label: 'Countries', icon: Globe },
+]
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let animationFrameId: number
-    let particles: Array<{
-      x: number
-      y: number
-      vx: number
-      vy: number
-      radius: number
-      color: string
-    }> = []
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-
-    const createParticles = () => {
-      particles = []
-      const count = Math.floor((canvas.width * canvas.height) / 25000)
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: Math.random() * 2 + 1,
-          color: Math.random() > 0.5 ? 'rgba(0, 212, 170, 0.5)' : 'rgba(244, 196, 48, 0.3)'
-        })
-      }
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Draw connections
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
-          const dx = p1.x - p2.x
-          const dy = p1.y - p2.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-
-          if (dist < 150) {
-            const opacity = (1 - dist / 150) * 0.2
-            ctx.beginPath()
-            ctx.moveTo(p1.x, p1.y)
-            ctx.lineTo(p2.x, p2.y)
-            ctx.strokeStyle = `rgba(0, 212, 170, ${opacity})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        })
-      })
-
-      // Draw particles
-      particles.forEach(p => {
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = p.color
-        ctx.fill()
-
-        // Update position
-        p.x += p.vx
-        p.y += p.vy
-
-        // Bounce off edges
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
-      })
-
-      animationFrameId = requestAnimationFrame(draw)
-    }
-
-    resize()
-    createParticles()
-    draw()
-
-    window.addEventListener('resize', resize)
-
-    return () => {
-      window.removeEventListener('resize', resize)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.6 }}
-    />
-  )
-}
-
-// 3D Floating Card
-function FloatingCard({ delay = 0 }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, rotateX: -20 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{ delay, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-      className="absolute right-[10%] top-[20%] hidden xl:block"
-    >
-      <div className="glass-card-2030 p-6 w-72 float-3d"
-      >
-        <div className="flex items-center gap-3 mb-4"
-        >
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center"
-          >
-            <Users className="w-5 h-5 text-navy-900" />
-          </div>
-          <div>
-            <p className="text-sm text-text-secondary">AI Matching</p>
-            <p className="text-lg font-bold text-text-primary">Live</p>
-          </div>
-        </div>
-
-        {/* Animated matching visualization */}
-        <div className="space-y-2"
-        >
-          {[
-            { name: 'Executive Assistant', match: 94 },
-            { name: 'Social Media Manager', match: 91 },
-            { name: 'Data Entry Specialist', match: 88 },
-          ].map((item, i) => (
-            <motion.div
-              key={item.name}
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ delay: delay + 0.5 + i * 0.2, duration: 0.8 }}
-              className="flex items-center gap-3"
-            >
-              <div className="flex-1 h-2 bg-navy-700 rounded-full overflow-hidden"
-              >
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${item.match}%` }}
-                  transition={{ delay: delay + 0.8 + i * 0.2, duration: 1 }}
-                  className="h-full bg-gradient-to-r from-teal-500 to-teal-400 rounded-full"
-                />
-              </div>
-              <span className="text-xs font-medium text-teal-400 w-8">{item.match}%</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-// Stats Counter
-function StatsCounter({ value, suffix = '', label }: { value: number; suffix?: string; label: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const duration = 2000
-    const steps = 60
-    const increment = value / steps
-    let current = 0
-
-    const timer = setInterval(() => {
-      current += increment
-      if (current >= value) {
-        setCount(value)
-        clearInterval(timer)
-      } else {
-        setCount(Math.floor(current))
-      }
-    }, duration / steps)
-
-    return () => clearInterval(timer)
-  }, [isVisible, value])
-
-  return (
-    <div ref={ref} className="text-center"
-    >
-      <div className="text-3xl md:text-4xl font-bold text-text-primary"
-      >
-        {count.toLocaleString()}{suffix}
-      </div>
-      <div className="text-sm text-text-secondary mt-1">{label}</div>
-    </div>
-  )
-}
+const tierSystem = [
+  { tier: 'Associate', rate: '$15-25/hr', color: 'bg-teal-600', barWidth: 'w-[25%]', barColor: 'bg-teal-600' },
+  { tier: 'Professional', rate: '$25-40/hr', color: 'bg-teal-500', barWidth: 'w-[50%]', barColor: 'bg-teal-500', active: true },
+  { tier: 'Expert', rate: '$40-75/hr', color: 'bg-teal-400', barWidth: 'w-[75%]', barColor: 'bg-teal-400' },
+  { tier: 'Legend', rate: 'Invite Only', color: 'bg-gold-300', barWidth: 'w-full', barColor: 'bg-gradient-to-r from-gold-400 to-gold-300' },
+]
 
 export default function Hero2030() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start']
-  })
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = ((e.clientX - rect.left) / rect.width) * 100
-      const y = ((e.clientY - rect.top) / rect.height) * 100
-      setMousePosition({ x, y })
-
-      // Update CSS custom properties for cursor glow
-      document.documentElement.style.setProperty('--cursor-x', `${x}%`)
-      document.documentElement.style.setProperty('--cursor-y', `${y}%`)
-    }
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen overflow-hidden mesh-gradient cursor-glow"
-    >
-      {/* Animated Background Layers */}
-      <div className="absolute inset-0"
-      >
-        {/* Gradient orbs */}
-        <motion.div
-          style={{ y }}
-          className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-teal-500/20 rounded-full blur-[150px]"
-        />
-        <motion.div
-          style={{ y }}
-          className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-gold-500/10 rounded-full blur-[150px]"
-        />
+    <>
+      <section className="relative overflow-hidden bg-navy-900 pt-14 sm:pt-20 pb-6">
+        {/* Subtle single gradient — barely visible, not distracting */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-navy-800/40 via-navy-900 to-navy-900" />
+        </div>
 
-        {/* Particle Network */}
-        <ParticleNetwork />
-
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-grid opacity-20" />
-      </div>
-
-      {/* Content */}
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 min-h-screen flex flex-col justify-center px-6 pt-20"
-      >
-        <div className="container mx-auto max-w-6xl"
-        >
-          <div className="grid lg:grid-cols-2 gap-12 items-center"
-          >
-            {/* Left Content */}
-            <div className="space-y-8"
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 relative z-10">
+          {/* Hero Content */}
+          <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 items-start">
+            {/* Left - Main messaging */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-3 space-y-4"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-2030"
-                >
-                  <span className="w-2 h-2 rounded-full bg-teal-400 live-pulse" />
-                  <span className="text-sm text-text-secondary">The Future of Work is Here</span>
-                </div>
-              </motion.div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded border border-navy-700/60 bg-navy-800/40 text-[10px] sm:text-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500 live-pulse" />
+                <span className="text-text-secondary">The Virtual Assistant Operating System</span>
+              </div>
 
-              {/* Headline */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.7 }}
-                className="space-y-4"
-              >
-                <h1 className="heading-fluid font-bold"
-                >
-                  Virtual Assistants,{' '}
-                  <span className="text-gradient-teal">Reimagined</span>
-                  <br />
-                  for 2030
-                </h1>
-                <p className="text-xl text-text-secondary max-w-lg"
-                >
-                  AI-matched opportunities, blockchain-verified reputation,
-                  and career paths that compound.
-                </p>
-              </motion.div>
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-text-heading">
+                Own Your Career.<br />
+                <span className="text-gradient-teal">Build Your Business.</span>
+              </h1>
 
-              {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <Link href="/discover"
-                >
+              <p className="text-sm sm:text-base text-text-secondary max-w-xl leading-relaxed">
+                The career OS for elite VAs. AI-matched jobs, blockchain-verified reputation,
+                and structured growth paths. Not a gig platform.
+              </p>
+
+              {/* CTAs — clearly differentiated */}
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-1">
+                <Link href="/register?role=va" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="magnetic-btn bg-teal-500 text-navy-900 font-bold text-lg px-8 py-6"
+                    className="font-bold px-6 h-10 sm:h-11 w-full sm:w-auto text-sm"
                   >
-                    <Users className="w-5 h-5 mr-2" />
-                    Hire Elite Talent
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Join as Virtual Assistant
+                    <ArrowRight className="w-4 h-4 ml-2 arrow-nudge" />
                   </Button>
                 </Link>
-                <Link href="/dashboard/jobs"
-                >
+                <Link href="/register?role=client" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="glass-card-2030-hover border-teal-500/50 text-teal-400 text-lg px-8 py-6"
+                    className="border-navy-600 text-text-secondary hover:text-text-primary hover:border-navy-500 px-6 h-10 sm:h-11 w-full sm:w-auto text-sm font-medium"
                   >
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Join as VA
+                    <Users className="w-4 h-4 mr-2" />
+                    Find Talent
+                    <ChevronRight className="w-4 h-4 ml-1 arrow-nudge" />
                   </Button>
                 </Link>
-              </motion.div>
+              </div>
 
               {/* Trust Indicators */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="flex flex-wrap gap-6 pt-4"
-              >
-                {[
-                  { icon: Shield, text: 'Blockchain Verified' },
-                  { icon: Zap, text: 'AI-Matched in 2hrs' },
-                  { icon: Users, text: '12,000+ VAs' },
-                ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-2 text-text-secondary"
-                  >
-                    <Icon className="w-4 h-4 text-teal-400" />
-                    <span className="text-sm">{text}</span>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[10px] sm:text-xs text-text-muted pt-1">
+                <span className="flex items-center gap-1.5"><Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-teal-500" /> Blockchain Verified</span>
+                <span className="flex items-center gap-1.5"><Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-teal-500" /> AI-Matched in 2hrs</span>
+                <span className="flex items-center gap-1.5"><Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-teal-500" /> 50+ Countries</span>
+              </div>
+            </motion.div>
 
-            {/* Right - 3D Elements */}
-            <div className="relative h-[400px] lg:h-[500px]"
+            {/* Right - Tier Preview Card (elevated design) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="lg:col-span-2"
             >
-              <FloatingCard delay={0.3} />
+              <div className="relative border border-navy-700/60 bg-navy-800/50 backdrop-blur-sm rounded-lg overflow-hidden">
+                {/* Top accent line */}
+                <div className="h-[2px] bg-gradient-to-r from-teal-500 via-teal-400 to-gold-400" />
 
-              {/* Secondary floating elements */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="absolute left-[5%] bottom-[10%] hidden xl:block"
-              >
-                <div className="glass-card-2030 p-4"
-                >
-                  <div className="flex items-center gap-2 mb-2"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center"
-                    >
-                      <Shield className="w-4 h-4 text-navy-900" />
+                <div className="p-4 sm:p-5">
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-text-primary tracking-wide">Career Tiers</h3>
+                      <p className="text-[10px] text-text-muted mt-0.5">Your path to Legend</p>
                     </div>
-                    <span className="text-sm font-medium text-text-primary">Verified</span>
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded bg-navy-700/60 flex items-center justify-center">
+                      <GraduationCap className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-teal-400" />
+                    </div>
                   </div>
-                  <p className="text-xs text-text-secondary">Stellar Blockchain</p>
+
+                  <div className="space-y-2.5 sm:space-y-3">
+                    {tierSystem.map((t) => (
+                      <div
+                        key={t.tier}
+                        className={`flex items-center gap-3 group ${t.active ? 'bg-navy-700/40 -mx-2 px-2 py-1.5 rounded border-l-2 border-teal-500' : ''}`}
+                      >
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className={`text-xs sm:text-sm font-medium ${t.active ? 'text-teal-400' : 'text-text-secondary'} group-hover:text-text-primary transition-colors`}>
+                              {t.tier}
+                              {t.active && <span className="text-[8px] sm:text-[10px] text-teal-500 ml-1.5 font-normal uppercase tracking-wider">You are here</span>}
+                            </span>
+                            <span className="text-[10px] sm:text-xs text-text-muted font-mono">{t.rate}</span>
+                          </div>
+                          {/* Progress bar */}
+                          <div className="h-1 bg-navy-700/60 rounded-full overflow-hidden">
+                            <div className={`h-full rounded-full ${t.barColor} ${t.barWidth}`} />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-navy-700/40 flex items-center justify-between">
+                    <p className="text-[10px] sm:text-xs text-text-muted">
+                      Portable. Blockchain-verified.
+                    </p>
+                    <Link href="/register?role=va">
+                      <span className="text-[10px] sm:text-xs text-teal-400 hover:text-teal-300 transition-colors cursor-pointer flex items-center gap-0.5 font-medium">
+                        Start <ChevronRight className="w-3 h-3 arrow-nudge" />
+                      </span>
+                    </Link>
+                  </div>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Stats Bar */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="mt-20"
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="mt-6 sm:mt-8"
           >
-            <div className="glass-card-2030 p-8"
-            >
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8"
-              >
-                <StatsCounter value={12000} suffix="+" label="Verified VAs" />
-                <StatsCounter value={500} suffix="+" label="Companies" />
-                <StatsCounter value={98} suffix="%" label="Success Rate" />
-                <StatsCounter value={2} suffix="hrs" label="Avg Match Time" />
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-navy-700/30 rounded overflow-hidden border border-navy-700/50">
+              {platformStats.map(({ value, label, icon: Icon }) => (
+                <div key={label} className="bg-navy-800/50 px-3 sm:px-4 py-3 sm:py-4 text-center">
+                  <div className="text-lg sm:text-xl font-bold text-text-primary">{value}</div>
+                  <div className="text-[10px] sm:text-xs text-text-muted mt-0.5 flex items-center justify-center gap-1">
+                    <Icon className="w-3 h-3" />{label}
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="flex flex-col items-center gap-2"
-        >
-          <span className="text-xs text-text-secondary">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-5 h-8 rounded-full border-2 border-text-secondary/30 flex justify-center pt-1"
-          >
-            <motion.div className="w-1 h-2 bg-text-secondary/50 rounded-full" />
-          </motion.div>
-        </div>
-      </motion.div>
-    </section>
+      </section>
+    </>
   )
 }

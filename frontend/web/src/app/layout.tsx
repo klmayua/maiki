@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/lib/providers'
 import { ChatbotWidget } from '@/components/chatbot/ChatbotWidget'
+import FloatingDockWrapper from '@/components/layout/FloatingDockWrapper'
+import ScrollNavbar from '@/components/layout/ScrollNavbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,7 +14,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#00d4aa' },
+    { media: '(prefers-color-scheme: light)', color: '#0d9488' },
     { media: '(prefers-color-scheme: dark)', color: '#101218' },
   ],
 }
@@ -68,7 +70,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-navy-900`}>
         <Providers>
+          <ScrollNavbar />
           {children}
+          <FloatingDockWrapper />
           <ChatbotWidget />
         </Providers>
       </body>

@@ -84,11 +84,10 @@ export default function DashboardLayout({
       <header className="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-white/10">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-maiki-400 to-maiki-600 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
+            <Link href="/" className="flex items-center">
+              <div className="px-3 py-1.5 bg-navy-800 border border-navy-600/60 rounded">
+                <span className="text-xl font-bold tracking-[0.04em]"><span className="text-teal-400">m</span><span className="text-white">aiki</span></span>
               </div>
-              <span className="font-bold text-white text-lg">maiki</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-1">

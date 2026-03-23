@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 
 from app.deps import get_db, get_current_user, get_current_active_superuser
-from app.models import Skill
+from app.models import Skill, User
 from app.schemas import SkillCreate, SkillResponse
 
 router = APIRouter(prefix="/skills", tags=["skills"])

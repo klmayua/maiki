@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-navy-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-navy-900 flex items-center justify-center p-4 pb-20 md:pb-4">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-[150px]" />
@@ -21,15 +21,6 @@ export default function LoginPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md relative z-10"
       >
-        {/* Back Link */}
-        <Link href="/">
-          <Button variant="ghost" className="mb-6 text-text-secondary"
->
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to home
-          </Button>
-        </Link>
-
         <Card className="glass-card"
         >
           <CardHeader className="text-center"
@@ -112,7 +103,7 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-teal-500 text-navy-900"
+              <Button type="submit" className="w-full"
               >
                 Sign In
               </Button>

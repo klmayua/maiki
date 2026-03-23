@@ -4,12 +4,12 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded text-sm font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]',
   {
     variants: {
       variant: {
-        default: 'bg-teal-500 text-navy-900 hover:bg-teal-400 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:-translate-y-0.5 font-bold',
-        primary: 'bg-teal-500 text-navy-900 hover:bg-teal-400 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:-translate-y-0.5 font-bold',
+        default: 'bg-teal-500/15 text-teal-300 border border-teal-500/40 hover:bg-teal-500/25 hover:border-teal-500/50 hover:text-teal-200 shadow-lg shadow-teal-500/10 hover:shadow-teal-500/20 hover:-translate-y-0.5 font-bold',
+        primary: 'bg-teal-500/15 text-teal-300 border border-teal-500/40 hover:bg-teal-500/25 hover:border-teal-500/50 hover:text-teal-200 shadow-lg shadow-teal-500/10 hover:shadow-teal-500/20 hover:-translate-y-0.5 font-bold',
         destructive: 'bg-red-600 text-white hover:bg-red-500 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 hover:-translate-y-0.5',
         success: 'bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5',
         warning: 'bg-amber-500 text-navy-900 hover:bg-amber-400 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 font-bold',
@@ -22,11 +22,11 @@ const buttonVariants = cva(
         gold: 'bg-gold-500 text-navy-900 hover:bg-gold-400 shadow-lg shadow-gold-500/25 hover:shadow-gold-500/40 hover:-translate-y-0.5 font-bold',
       },
       size: {
-        sm: 'h-9 rounded-md px-3 text-xs gap-1.5',
-        default: 'h-11 rounded-lg px-5 py-2 text-sm gap-2',
-        md: 'h-12 rounded-lg px-6 text-base gap-2',
-        lg: 'h-14 rounded-xl px-8 text-base gap-2',
-        xl: 'h-16 rounded-xl px-10 text-lg gap-2.5 font-bold',
+        sm: 'h-9 rounded px-3 text-xs gap-1.5',
+        default: 'h-11 rounded px-5 py-2 text-sm gap-2',
+        md: 'h-12 rounded px-6 text-base gap-2',
+        lg: 'h-14 rounded px-8 text-base gap-2',
+        xl: 'h-16 rounded px-10 text-lg gap-2.5 font-bold',
         icon: 'h-11 w-11 p-0',
         'icon-sm': 'h-9 w-9 p-0',
         'icon-lg': 'h-14 w-14 p-0',

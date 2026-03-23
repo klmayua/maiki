@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from slugify import slugify
 
 from app.deps import get_db, get_current_user
-from app.models import Guild
+from app.models import Guild, User
 from app.schemas import GuildCreate, GuildResponse
 
 router = APIRouter(prefix="/guilds", tags=["guilds"])

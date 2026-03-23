@@ -9,7 +9,7 @@ from fastapi.requests import Request
 
 from app.core.config import settings
 from app.core.database import engine, Base
-from app.api.routes import auth, users, jobs, applications, skills, payments, courses, guilds, notifications, devices, wallet, kyc, paystack_webhook, ai_matching, community, messages, reviews, email, stripe_webhook as stripe_webhook_route, analytics, admin, semantic, chatbot, scraped_jobs
+from app.api.routes import auth, users, jobs, applications, skills, payments, courses, guilds, notifications, devices, wallet, kyc, paystack_webhook, ai_matching, community, messages, reviews, email, stripe_webhooks as stripe_webhook_route, analytics, admin, semantic, chatbot, scraped_jobs
 
 
 # Create database tables (in production, use Alembic)
@@ -50,7 +50,7 @@ app.add_middleware(
 if not settings.DEBUG:
     app.add_middleware(
         TrustedHostMiddleware,
-        allowed_hosts=["*.maiki.io", "maiki.io"],
+        allowed_hosts=["*.maiki.io", "maiki.io", "maiki.nyamabo.com", "localhost", "127.0.0.1"],
     )
 
 

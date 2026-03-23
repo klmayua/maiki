@@ -65,26 +65,27 @@ module.exports = {
           100: '#c4c9d4',
           50: '#f0f2f5',
         },
-        // Teal Accent - CTAs, Primary Actions
+        // Teal Accent - CTAs, Primary Actions (muted, professional)
         teal: {
-          600: '#00b894',
-          500: '#00d4aa',
-          400: '#33e0bf',
-          300: '#66ebd4',
-          200: '#99f5e8',
-          glow: 'rgba(0, 212, 170, 0.4)',
+          600: '#0f766e',
+          500: '#0d9488',
+          400: '#2aa79b',
+          300: '#5eead4',
+          200: '#99f6e4',
+          glow: 'rgba(13, 148, 136, 0.3)',
         },
-        // Gold Accent - Premium, Featured
+        // Gold Accent - Premium, Featured (warm amber, not yellow)
         gold: {
-          600: '#d4a72c',
-          500: '#f4c430',
-          400: '#f7d35f',
-          300: '#f9e28f',
-          glow: 'rgba(244, 196, 48, 0.4)',
+          600: '#92400e',
+          500: '#b45309',
+          400: '#d97706',
+          300: '#f59e0b',
+          glow: 'rgba(217, 119, 6, 0.3)',
         },
         // Text colors
         text: {
           primary: '#f8fafc',
+          heading: '#e2e8f0',
           secondary: '#94a3b8',
           muted: '#64748b',
         },
@@ -164,13 +165,13 @@ module.exports = {
         },
         // Glow pulse for CTAs
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px -5px rgba(0, 212, 170, 0.4)" },
-          "50%": { boxShadow: "0 0 40px -5px rgba(0, 212, 170, 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 15px -5px rgba(13, 148, 136, 0.3)" },
+          "50%": { boxShadow: "0 0 25px -5px rgba(13, 148, 136, 0.4)" },
         },
         // Gold glow for premium
         "gold-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px -5px rgba(244, 196, 48, 0.4)" },
-          "50%": { boxShadow: "0 0 40px -5px rgba(244, 196, 48, 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 15px -5px rgba(217, 119, 6, 0.3)" },
+          "50%": { boxShadow: "0 0 25px -5px rgba(217, 119, 6, 0.4)" },
         },
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
@@ -182,8 +183,8 @@ module.exports = {
         },
         // Subtle border glow
         "border-glow": {
-          "0%, 100%": { borderColor: "rgba(0, 212, 170, 0.2)" },
-          "50%": { borderColor: "rgba(0, 212, 170, 0.5)" },
+          "0%, 100%": { borderColor: "rgba(13, 148, 136, 0.15)" },
+          "50%": { borderColor: "rgba(13, 148, 136, 0.3)" },
         },
       },
       animation: {
@@ -208,7 +209,7 @@ module.exports = {
         // Elite navy gradient
         'navy-gradient': 'linear-gradient(135deg, #101218 0%, #161922 50%, #0a0c12 100%)',
         // Teal glow gradient
-        'teal-glow': 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, transparent 50%)',
+        'teal-glow': 'linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, transparent 50%)',
         // Shimmer for featured cards
         'shimmer-gradient': 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%)',
       },
