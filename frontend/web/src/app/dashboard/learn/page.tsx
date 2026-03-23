@@ -215,7 +215,7 @@ export default function LearnPage() {
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${path.color} flex items-center justify-center flex-shrink-0`}>
-                      <patch.icon className="w-6 h-6 text-white" />
+                      <path.icon className="w-6 h-6 text-white" />
                     </div>
 
                     <div className="flex-1">

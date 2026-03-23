@@ -36,9 +36,11 @@ export function useAuth() {
     setLoading(false);
   }, []);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'
+
   const login = async (email: string, password: string) => {
     // This would call the actual login API
-    const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

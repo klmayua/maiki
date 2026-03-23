@@ -54,7 +54,8 @@ export function useWebSocket(token: string): UseWebSocketReturn {
   useEffect(() => {
     if (!token) return;
 
-    const ws = new WebSocket(`ws://localhost:8000/api/v1/messages/ws/${token}`);
+    const WS_URL = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8000/api/v1'
+    const ws = new WebSocket(`${WS_URL}/messages/ws/${token}`);
 
     ws.onopen = () => {
       setIsConnected(true);

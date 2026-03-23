@@ -1,4 +1,6 @@
-"""Mobile viewport and safe area hooks."""
+/**
+ * Mobile viewport and safe area hooks.
+ */
 import { useState, useEffect } from 'react'
 
 interface ViewportState {
@@ -13,8 +15,8 @@ interface ViewportState {
 
 export function useViewport(): ViewportState {
   const [viewport, setViewport] = useState<ViewportState>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
     isKeyboardOpen: false,
     safeAreaTop: 0,
     safeAreaBottom: 0,

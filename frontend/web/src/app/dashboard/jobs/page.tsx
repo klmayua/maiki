@@ -89,14 +89,14 @@ function ShoppingIcon(props: any) {
   )
 }
 
-// Tier system
+// Tier system with new elite colors
 const tiers = [
-  { name: 'Apprentice', color: 'bg-slate-500', minHours: 0, hourlyRate: '$10-15' },
-  { name: 'Associate', color: 'bg-maiki-600', minHours: 50, hourlyRate: '$15-25' },
-  { name: 'Professional', color: 'bg-maiki-500', minHours: 200, hourlyRate: '$25-40' },
-  { name: 'Expert', color: 'bg-accent-500', minHours: 500, hourlyRate: '$40-75' },
-  { name: 'Master', color: 'bg-gradient-to-r from-accent-500 to-accent-400', minHours: 1000, hourlyRate: '$75-100' },
-  { name: 'Legend', color: 'bg-gradient-to-r from-accent-400 via-maiki-400 to-accent-400', minHours: 5000, hourlyRate: '$100+' },
+  { name: 'Apprentice', color: 'bg-slate-600', minHours: 0, hourlyRate: '$10-15' },
+  { name: 'Associate', color: 'bg-navy-500', minHours: 50, hourlyRate: '$15-25' },
+  { name: 'Professional', color: 'bg-teal-600', minHours: 200, hourlyRate: '$25-40' },
+  { name: 'Expert', color: 'bg-teal-500', minHours: 500, hourlyRate: '$40-75' },
+  { name: 'Master', color: 'bg-gradient-to-r from-gold-500 to-gold-400', minHours: 1000, hourlyRate: '$75-100' },
+  { name: 'Legend', color: 'bg-gradient-to-r from-gold-400 via-teal-400 to-gold-400', minHours: 5000, hourlyRate: '$100+' },
 ]
 
 export default function FindVAJobsPage() {
@@ -122,11 +122,9 @@ export default function FindVAJobsPage() {
       setLoading(true)
       setError(null)
 
-      // In production, this would use proper auth token
       const response = await fetch(`${API_BASE_URL}/jobs/scraped/?limit=50&days_since_posted=7`, {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}` // Add when auth is ready
         },
       })
 
@@ -139,7 +137,6 @@ export default function FindVAJobsPage() {
     } catch (err) {
       console.error('Error fetching jobs:', err)
       setError('Failed to load jobs. Using fallback data.')
-      // Use fallback data
       setJobs(getFallbackJobs())
     } finally {
       setLoading(false)
@@ -161,13 +158,11 @@ export default function FindVAJobsPage() {
   const toggleSaveJob = async (jobId: number) => {
     try {
       if (savedJobs.includes(jobId)) {
-        // Unsave
         await fetch(`${API_BASE_URL}/jobs/scraped/${jobId}/save`, {
           method: 'DELETE',
         })
         setSavedJobs(prev => prev.filter(id => id !== jobId))
       } else {
-        // Save
         await fetch(`${API_BASE_URL}/jobs/scraped/${jobId}/save`, {
           method: 'POST',
         })
@@ -239,35 +234,36 @@ export default function FindVAJobsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-navy-900 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-accent-400 mx-auto mb-4" />
-          <p className="text-slate-400">Loading opportunities...</p>
+          <Loader2 className="w-12 h-12 animate-spin text-teal-400 mx-auto mb-4" />
+          <p className="text-text-secondary">Loading opportunities...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-navy-900">
       {/* Error Banner */}
       {error && (
         <div className="bg-amber-500/10 border-b border-amber-500/30 px-6 py-3">
           <div className="container mx-auto flex items-center gap-2 text-amber-400">
             <AlertCircle className="w-4 h-4" />
             <span className="text-sm">{error}</span>
-            <Button variant="ghost" size="sm" onClick={fetchJobs} className="ml-auto">
+            <Button variant="ghost" size="sm" onClick={fetchJobs} className="ml-auto text-amber-400 hover:text-amber-300">
               Retry
             </Button>
           </div>
         </div>
       )}
 
-      {/* Hero Section */}
-      <section className="relative py-16 px-6 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-50" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-maiki-600/10 rounded-full blur-[128px]" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-500/5 rounded-full blur-[128px]" />
+      {/* Hero Section - Elite Design */}
+      <section className="relative py-16 px-6 border-b border-navy-700/50 overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-30" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold-500/5 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-navy-800/30 rounded-full blur-[200px]" />
 
         <div className="container mx-auto relative z-10">
           <motion.div
@@ -275,21 +271,21 @@ export default function FindVAJobsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-4xl mx-auto mb-12"
           >
-            <Badge className="mb-4 bg-accent-500/20 text-accent-400 border-accent-500/30">
+            <Badge className="mb-4 bg-gold-500/20 text-gold-400 border-gold-500/30 hover:bg-gold-500/30">
               <Sparkles className="w-3 h-3 mr-1" />
               AI-Powered Job Matching
             </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4">
               Find Your Next{' '}
-              <span className="gradient-text">VA Opportunity</span>
+              <span className="text-gradient-teal">VA Opportunity</span>
             </h1>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
               Access exclusive jobs matched to your tier, skills, and career goals.
               Join the future of AI-human collaboration.
             </p>
           </motion.div>
 
-          {/* Stats Bar */}
+          {/* Stats Bar - Glass Cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -298,9 +294,9 @@ export default function FindVAJobsPage() {
           >
             {platformStats.map((stat) => (
               <Card key={stat.label} className="glass-card p-6 text-center">
-                <stat.icon className="w-6 h-6 mx-auto mb-2 text-accent-400" />
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
-                <div className="text-sm text-slate-400">{stat.label}</div>
+                <stat.icon className="w-6 h-6 mx-auto mb-2 text-teal-400" />
+                <div className="text-2xl font-bold text-text-primary">{stat.value}</div>
+                <div className="text-sm text-text-muted">{stat.label}</div>
               </Card>
             ))}
           </motion.div>
@@ -313,15 +309,15 @@ export default function FindVAJobsPage() {
             className="max-w-2xl mx-auto"
           >
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
               <Input
                 type="text"
                 placeholder="Search jobs, skills, or companies..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white/5 border-white/10 text-white placeholder:text-slate-500 rounded-xl text-lg"
+                className="w-full pl-12 pr-4 py-4 bg-navy-800/50 border-navy-700/50 text-text-primary placeholder:text-text-muted rounded-xl text-lg focus:border-teal-500/50 focus:ring-teal-500/20"
               />
-              <Button className="absolute right-2 top-1/2 -translate-y-1/2">
+              <Button className="absolute right-2 top-1/2 -translate-y-1/2 bg-teal-500 hover:bg-teal-400 text-navy-900 font-semibold">
                 <Sparkles className="w-4 h-4 mr-2" />
                 AI Match
               </Button>
@@ -337,15 +333,15 @@ export default function FindVAJobsPage() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="py-12 px-6 border-b border-white/5"
+            className="py-12 px-6 border-b border-navy-700/50 bg-navy-800/30"
           >
             <div className="container mx-auto">
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Career Growth Paths</h2>
-                  <p className="text-slate-400">Specialize in high-demand areas. The AI-Augmented path is growing 67% YoY.</p>
+                  <h2 className="text-2xl font-bold text-text-primary mb-2">Career Growth Paths</h2>
+                  <p className="text-text-secondary">Specialize in high-demand areas. The AI-Augmented path is growing 67% YoY.</p>
                 </div>
-                <Button variant="ghost" onClick={() => setShowCareerPaths(false)}>
+                <Button variant="ghost" onClick={() => setShowCareerPaths(false)} className="text-text-muted hover:text-text-primary">
                   Hide
                 </Button>
               </div>
@@ -359,19 +355,19 @@ export default function FindVAJobsPage() {
                     transition={{ delay: index * 0.05 }}
                   >
                     <Card
-                      className={`glass-card-hover cursor-pointer p-5 ${selectedPath === path.name ? 'border-accent-500/50' : ''}`}
+                      className={`glass-card-hover cursor-pointer p-5 ${selectedPath === path.name ? 'border-teal-500/50 glow-teal-sm' : ''}`}
                       onClick={() => setSelectedPath(selectedPath === path.name ? null : path.name)}
                     >
                       <div className="flex items-start justify-between mb-4">
-                        <div className="w-12 h-12 rounded-xl bg-maiki-500/10 flex items-center justify-center">
-                          <path.icon className="w-6 h-6 text-maiki-400" />
+                        <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                          <path.icon className="w-6 h-6 text-teal-400" />
                         </div>
-                        <Badge variant="secondary" className="bg-green-500/10 text-green-400">
+                        <Badge variant="secondary" className="bg-teal-500/20 text-teal-400 border-teal-500/30">
                           {path.growth}
                         </Badge>
                       </div>
-                      <h3 className="font-semibold text-white mb-2">{path.name}</h3>
-                      <div className="flex items-center gap-4 text-sm text-slate-400">
+                      <h3 className="font-semibold text-text-primary mb-2">{path.name}</h3>
+                      <div className="flex items-center gap-4 text-sm text-text-secondary">
                         <span className="flex items-center gap-1">
                           <Briefcase className="w-4 h-4" />
                           {path.jobs} jobs
@@ -399,15 +395,15 @@ export default function FindVAJobsPage() {
               {/* Stats by Source */}
               {stats && (
                 <Card className="glass-card p-4">
-                  <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-accent-400" />
+                  <h3 className="font-semibold text-text-primary mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-4 h-4 text-teal-400" />
                     Jobs by Source
                   </h3>
                   <div className="space-y-2">
                     {Object.entries(stats.by_source).map(([source, count]) => (
                       <div key={source} className="flex items-center justify-between text-sm">
-                        <span className="text-slate-400 capitalize">{source.replace('_', ' ')}</span>
-                        <span className="text-white font-medium">{count}</span>
+                        <span className="text-text-muted capitalize">{source.replace('_', ' ')}</span>
+                        <span className="text-text-primary font-medium">{count}</span>
                       </div>
                     ))}
                   </div>
@@ -415,33 +411,56 @@ export default function FindVAJobsPage() {
               )}
 
               {/* Guild Membership Promo */}
-              <Card className="glass-card p-4 border-l-2 border-l-maiki-500">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-maiki-500/20 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-maiki-400" />
+              <Card className="glass-card p-4 border-l-2 border-l-teal-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-teal-500/10 rounded-full blur-[30px]" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-teal-500/20 flex items-center justify-center">
+                      <Users className="w-5 h-5 text-teal-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-text-primary">Guild Benefits</h3>
+                      <p className="text-xs text-text-muted">Join a guild for exclusive jobs</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Guild Benefits</h3>
-                    <p className="text-xs text-slate-400">Join a guild for exclusive jobs</p>
-                  </div>
+                  <ul className="text-sm text-text-secondary space-y-2 mb-4">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-teal-400" />
+                      Priority job access
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-teal-400" />
+                      Collective rate negotiation
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-teal-400" />
+                      Shared resources & training
+                    </li>
+                  </ul>
+                  <Button variant="outline" size="sm" className="w-full border-teal-500/30 text-teal-400 hover:bg-teal-500/10 hover:border-teal-400">
+                    Browse Guilds
+                  </Button>
                 </div>
-                <ul className="text-sm text-slate-400 space-y-2 mb-4">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-accent-400" />
-                    Priority job access
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-accent-400" />
-                    Collective rate negotiation
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-accent-400" />
-                    Shared resources & training
-                  </li>
-                </ul>
-                <Button variant="outline" size="sm" className="w-full border-maiki-500/30">
-                  Browse Guilds
-                </Button>
+              </Card>
+
+              {/* Tier Progress */}
+              <Card className="glass-card p-4">
+                <h3 className="font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <Award className="w-4 h-4 text-gold-400" />
+                  Your Tier Progress
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-text-secondary">Current</span>
+                    <Badge className="bg-teal-500/20 text-teal-400 border-teal-500/30">Professional</Badge>
+                  </div>
+                  <div className="w-full h-2 bg-navy-800 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-teal-500 to-gold-400 rounded-full" style={{ width: '65%' }} />
+                  </div>
+                  <p className="text-xs text-text-muted">
+                    135 hours to Expert tier
+                  </p>
+                </div>
               </Card>
             </div>
 
@@ -450,22 +469,22 @@ export default function FindVAJobsPage() {
               {/* Filter Bar */}
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-4">
-                  <h2 className="text-xl font-semibold text-white">
+                  <h2 className="text-xl font-semibold text-text-primary">
                     {filteredJobs.length} Jobs Available
                   </h2>
                   {selectedPath && (
-                    <Badge className="bg-accent-500/20 text-accent-400">
+                    <Badge className="bg-teal-500/20 text-teal-400 border-teal-500/30">
                       {selectedPath}
-                      <button onClick={() => setSelectedPath(null)} className="ml-2">×</button>
+                      <button onClick={() => setSelectedPath(null)} className="ml-2 hover:text-teal-300">×</button>
                     </Badge>
                   )}
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-navy-600/50 text-text-secondary hover:text-text-primary hover:border-teal-500/50">
                     <Bookmark className="w-4 h-4 mr-2" />
                     Saved ({savedJobs.length})
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-navy-600/50 text-text-secondary hover:text-text-primary hover:border-teal-500/50">
                     <Filter className="w-4 h-4 mr-2" />
                     Filters
                   </Button>
@@ -476,12 +495,12 @@ export default function FindVAJobsPage() {
               <div className="space-y-4">
                 {filteredJobs.length === 0 ? (
                   <Card className="glass-card p-12 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800 flex items-center justify-center">
-                      <Briefcase className="w-8 h-8 text-slate-500" />
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-navy-800 flex items-center justify-center">
+                      <Briefcase className="w-8 h-8 text-text-muted" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">No jobs found</h3>
-                    <p className="text-slate-400 mb-4">Try adjusting your filters or search query</p>
-                    <Button onClick={() => { setSearchQuery(''); setSelectedPath(null); }}>
+                    <h3 className="text-lg font-semibold text-text-primary mb-2">No jobs found</h3>
+                    <p className="text-text-secondary mb-4">Try adjusting your filters or search query</p>
+                    <Button onClick={() => { setSearchQuery(''); setSelectedPath(null); }} className="bg-teal-500 hover:bg-teal-400 text-navy-900">
                       Clear Filters
                     </Button>
                   </Card>
@@ -493,7 +512,7 @@ export default function FindVAJobsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <Card className={`glass-card-hover overflow-hidden ${job.featured ? 'border-accent-500/30' : ''}`}>
+                      <Card className={`glass-card-hover overflow-hidden ${job.featured ? 'card-featured' : ''}`}>
                         <CardContent className="p-6">
                           <div className="flex flex-col xl:flex-row gap-6">
                             {/* Left - Main Info */}
@@ -501,24 +520,24 @@ export default function FindVAJobsPage() {
                               {/* Header Row */}
                               <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                                 <div>
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <h3 className="text-lg font-semibold text-white">{job.title}</h3>
+                                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                    <h3 className="text-lg font-semibold text-text-primary">{job.title}</h3>
                                     {job.auto_apply_supported && (
-                                      <Badge className="bg-maiki-500/20 text-maiki-400">
+                                      <Badge className="bg-teal-500/20 text-teal-400 border-teal-500/30">
                                         <Bot className="w-3 h-3 mr-1" />
                                         AI-Ready
                                       </Badge>
                                     )}
                                     {job.featured && (
-                                      <Badge className="bg-amber-500/20 text-amber-400">
+                                      <Badge className="bg-gold-500/20 text-gold-400 border-gold-500/30">
                                         <Sparkles className="w-3 h-3 mr-1" />
                                         Featured
                                       </Badge>
                                     )}
                                   </div>
-                                  <p className="text-slate-400 flex items-center gap-2">
+                                  <p className="text-text-secondary flex items-center gap-2">
                                     {job.company || 'Unknown Company'}
-                                    <span className="flex items-center text-accent-400 text-xs">
+                                    <span className="flex items-center text-teal-400 text-xs">
                                       <Shield className="w-3 h-3 mr-1" />
                                       {job.source}
                                     </span>
@@ -526,19 +545,19 @@ export default function FindVAJobsPage() {
                                 </div>
                                 <div className="text-right">
                                   <div className="flex items-center gap-2">
-                                    <span className="text-2xl font-bold text-white">{formatRate(job)}</span>
+                                    <span className="text-2xl font-bold text-text-primary">{formatRate(job)}</span>
                                   </div>
-                                  <p className="text-sm text-slate-500">hourly</p>
+                                  <p className="text-sm text-text-muted">hourly</p>
                                 </div>
                               </div>
 
                               {/* Description */}
-                              <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                              <p className="text-text-secondary text-sm mb-4 line-clamp-2">
                                 {job.description}
                               </p>
 
                               {/* Job Meta */}
-                              <div className="flex flex-wrap gap-4 text-sm text-slate-400 mb-4">
+                              <div className="flex flex-wrap gap-4 text-sm text-text-secondary mb-4">
                                 <span className="flex items-center gap-1">
                                   <MapPin className="w-4 h-4" />
                                   {job.location}
@@ -548,23 +567,23 @@ export default function FindVAJobsPage() {
                                   {job.job_type}
                                 </span>
                                 <span className="flex items-center gap-1">
-                                  <Star className="w-4 h-4" />
+                                  <Clock className="w-4 h-4" />
                                   {new Date(job.posted_at).toLocaleDateString()}
                                 </span>
                               </div>
 
                               {/* Skills */}
                               <div className="flex flex-wrap gap-2 mb-4">
-                                <Badge variant="secondary" className={`${tiers.find(t => t.name === getTierFromExperience(job.experience_level))?.color || 'bg-slate-500'} text-white`}>
+                                <Badge variant="secondary" className={`${tiers.find(t => t.name === getTierFromExperience(job.experience_level))?.color || 'bg-slate-600'} text-navy-900 font-medium`}>
                                   {getTierFromExperience(job.experience_level)}
                                 </Badge>
                                 {job.skills_required.slice(0, 5).map((skill) => (
-                                  <Badge key={skill} variant="secondary" className="bg-white/5 text-slate-300 capitalize">
+                                  <Badge key={skill} variant="secondary" className="bg-navy-800/50 text-text-secondary border-navy-700/50 capitalize">
                                     {skill.replace('_', ' ')}
                                   </Badge>
                                 ))}
                                 {job.skills_required.length > 5 && (
-                                  <Badge variant="secondary" className="bg-white/5 text-slate-400">
+                                  <Badge variant="secondary" className="bg-navy-800/50 text-text-muted">
                                     +{job.skills_required.length - 5}
                                   </Badge>
                                 )}
@@ -576,16 +595,16 @@ export default function FindVAJobsPage() {
                               {/* Match Score */}
                               <div className="text-center xl:text-right">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <span className="text-sm text-slate-400">Match</span>
-                                  <span className="text-lg font-bold text-accent-400">{Math.round(job.match_score || 70)}%</span>
+                                  <span className="text-sm text-text-muted">Match</span>
+                                  <span className="text-lg font-bold text-teal-400">{Math.round(job.match_score || 70)}%</span>
                                 </div>
-                                <div className="w-32 xl:w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                                <div className="w-32 xl:w-full h-2 bg-navy-800 rounded-full overflow-hidden">
                                   <div
-                                    className="h-full bg-gradient-to-r from-maiki-500 to-accent-500 rounded-full"
+                                    className="h-full bg-gradient-to-r from-teal-500 to-teal-400 rounded-full"
                                     style={{ width: `${job.match_score || 70}%` }}
                                   />
                                 </div>
-                                <p className="text-xs text-slate-500 mt-1">AI-calculated</p>
+                                <p className="text-xs text-text-muted mt-1">AI-calculated</p>
                               </div>
 
                               {/* Actions */}
@@ -594,15 +613,15 @@ export default function FindVAJobsPage() {
                                   variant="ghost"
                                   size="icon"
                                   onClick={() => toggleSaveJob(job.id)}
-                                  className={savedJobs.includes(job.id) ? 'text-accent-400' : ''}
+                                  className={savedJobs.includes(job.id) ? 'text-gold-400' : 'text-text-muted hover:text-text-primary'}
                                 >
                                   <Bookmark className={`w-5 h-5 ${savedJobs.includes(job.id) ? 'fill-current' : ''}`} />
                                 </Button>
-                                <Button variant="ghost" size="icon">
+                                <Button variant="ghost" size="icon" className="text-text-muted hover:text-text-primary">
                                   <Share2 className="w-5 h-5" />
                                 </Button>
                                 <a href={job.url} target="_blank" rel="noopener noreferrer">
-                                  <Button>
+                                  <Button className="bg-teal-500 hover:bg-teal-400 text-navy-900 font-semibold">
                                     Apply Now
                                   </Button>
                                 </a>
@@ -619,7 +638,7 @@ export default function FindVAJobsPage() {
               {/* Load More */}
               {filteredJobs.length > 0 && (
                 <div className="text-center pt-8">
-                  <Button variant="outline" size="lg" onClick={fetchJobs}>
+                  <Button variant="outline" size="lg" onClick={fetchJobs} className="border-navy-600/50 text-text-secondary hover:text-text-primary hover:border-teal-500/50">
                     Load More Jobs
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -633,22 +652,23 @@ export default function FindVAJobsPage() {
       {/* CTA Section */}
       <section className="py-16 px-6">
         <div className="container mx-auto">
-          <Card className="glass-card p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-maiki-500/10 via-transparent to-accent-500/10" />
+          <Card className="glass-card p-12 text-center relative overflow-hidden border-gold-500/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-gold-500/10" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[100px]" />
             <div className="relative z-10">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl font-bold text-text-primary mb-4">
                 Ready to Level Up Your VA Career?
               </h2>
-              <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+              <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
                 Join 12,000+ VAs building their reputation on Maiki.
                 Access AI-matched jobs, verified skills, and career growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg">
+                <Button size="lg" className="bg-teal-500 hover:bg-teal-400 text-navy-900 font-semibold">
                   <Sparkles className="w-5 h-5 mr-2" />
                   Get AI-Matched Jobs
                 </Button>
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="border-teal-500/50 text-teal-400 hover:bg-teal-500/10 hover:border-teal-400">
                   <Layers className="w-5 h-5 mr-2" />
                   Explore Career Paths
                 </Button>

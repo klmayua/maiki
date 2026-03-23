@@ -4,22 +4,22 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maiki-500 focus-visible:ring-offset-2 focus-visible:ring-offset-maiki-950 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]',
   {
     variants: {
       variant: {
-        default: 'bg-gradient-to-r from-maiki-600 to-maiki-500 text-white hover:from-maiki-500 hover:to-maiki-400 shadow-lg shadow-maiki-500/25 hover:shadow-maiki-500/40 hover:-translate-y-0.5',
-        primary: 'bg-gradient-to-r from-maiki-600 to-maiki-500 text-white hover:from-maiki-500 hover:to-maiki-400 shadow-lg shadow-maiki-500/25 hover:shadow-maiki-500/40 hover:-translate-y-0.5',
-        destructive: 'bg-gradient-to-r from-red-600 to-red-500 text-white hover:from-red-500 hover:to-red-400 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 hover:-translate-y-0.5',
-        success: 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white hover:from-emerald-500 hover:to-emerald-400 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5',
-        warning: 'bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5',
-        outline: 'border-2 border-maiki-500/50 bg-transparent text-maiki-400 hover:border-maiki-400 hover:bg-maiki-500/10 hover:text-maiki-300 shadow-sm hover:shadow',
-        secondary: 'bg-maiki-800 text-maiki-100 hover:bg-maiki-700 shadow-sm hover:shadow',
-        ghost: 'text-maiki-300 hover:bg-maiki-800/50 hover:text-white',
-        link: 'text-maiki-400 underline-offset-4 hover:underline hover:text-maiki-300',
-        soft: 'bg-maiki-500/20 text-maiki-400 hover:bg-maiki-500/30',
-        glass: 'bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm',
-        gold: 'bg-gradient-to-r from-gold-500 to-amber-500 text-maiki-950 hover:from-gold-400 hover:to-amber-400 shadow-lg shadow-gold-500/25 hover:shadow-gold-500/40 hover:-translate-y-0.5 font-bold',
+        default: 'bg-teal-500 text-navy-900 hover:bg-teal-400 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:-translate-y-0.5 font-bold',
+        primary: 'bg-teal-500 text-navy-900 hover:bg-teal-400 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:-translate-y-0.5 font-bold',
+        destructive: 'bg-red-600 text-white hover:bg-red-500 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 hover:-translate-y-0.5',
+        success: 'bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5',
+        warning: 'bg-amber-500 text-navy-900 hover:bg-amber-400 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 font-bold',
+        outline: 'border border-teal-500/50 bg-transparent text-teal-400 hover:border-teal-400 hover:bg-teal-500/10 hover:text-teal-300 shadow-sm hover:shadow',
+        secondary: 'bg-navy-700 text-text-primary hover:bg-navy-600 shadow-sm hover:shadow border border-navy-600/50',
+        ghost: 'text-text-secondary hover:bg-navy-800/50 hover:text-text-primary',
+        link: 'text-teal-400 underline-offset-4 hover:underline hover:text-teal-300',
+        soft: 'bg-teal-500/20 text-teal-400 hover:bg-teal-500/30 border border-teal-500/30',
+        glass: 'bg-white/5 text-text-primary border border-white/10 hover:bg-white/10 hover:border-white/20 backdrop-blur-sm',
+        gold: 'bg-gold-500 text-navy-900 hover:bg-gold-400 shadow-lg shadow-gold-500/25 hover:shadow-gold-500/40 hover:-translate-y-0.5 font-bold',
       },
       size: {
         sm: 'h-9 rounded-md px-3 text-xs gap-1.5',

@@ -12,8 +12,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#8b5cf6' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0514' },
+    { media: '(prefers-color-scheme: light)', color: '#00d4aa' },
+    { media: '(prefers-color-scheme: dark)', color: '#101218' },
   ],
 }
 
@@ -66,7 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-navy-900`}>
         <Providers>
           {children}
           <ChatbotWidget />

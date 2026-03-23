@@ -1,4 +1,6 @@
-"""Mobile-optimized animations."""
+/**
+ * Mobile-optimized animations.
+ */
 import { useIsMobile, usePrefersReducedMotion } from './useMediaQuery'
 
 export function useMobileAnimations() {
